@@ -15,9 +15,9 @@ const MIX_SIZE = 1024 * 1024 * 1024
 
 // 是否需要创建目录
 fse.pathExists(DIST_FOLDER_PATH).then(exist => {
-    if (!exist) {
-        fse.ensureDir(DIST_FOLDER_PATH)
-    }
+  if (!exist) {
+    fse.ensureDir(DIST_FOLDER_PATH)
+  }
 })
 
 /**
@@ -28,22 +28,22 @@ fse.pathExists(DIST_FOLDER_PATH).then(exist => {
  * @param {string} filePath 文件路径 
  */
 async function saveFile({ name, type, size, filePath }) {
-    if (size > MIX_SIZE) {
-        await fse.remove(filePath)
-        return new ErrorModel(uploadFileSizeFailInfo)
-    }
+  if (size > MIX_SIZE) {
+    await fse.remove(filePath)
+    return new ErrorModel(uploadFileSizeFailInfo)
+  }
 
-    // 移动文件
-    const fileName = Date.now() + '.' + name // 防止重名
-    const distFilePath = path.join(DIST_FOLDER_PATH, fileName) // 目的地
-    await fse.move(filePath, distFilePath)
+  // 移动文件
+  const fileName = Date.now() + '.' + name // 防止重名
+  const distFilePath = path.join(DIST_FOLDER_PATH, fileName) // 目的地
+  await fse.move(filePath, distFilePath)
 
-    // 返回信息
-    return new SuccessModel({
-        url: '/' + fileName
-    })
+  // 返回信息
+  return new SuccessModel({
+    url: '/' + fileName
+  })
 }
 
 module.exports = {
-    saveFile
+  saveFile
 }

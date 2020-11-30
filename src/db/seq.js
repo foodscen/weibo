@@ -1,36 +1,38 @@
-/**
- * @description sequlize實例
- * @author 何振宏
+/*
+ * @Author: your name
+ * @Date: 2020-03-30 17:33:31
+ * @LastEditTime: 2020-03-30 22:54:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /sequelize/src/seq.js
  */
+const Sequelize = require ('sequelize');
+const { MYSQL_CONF } = require('../conf/db');
+const { isProd, isTest } = require('../utils/env');
 
-const Sequelize = require('sequelize')
-const { MYSQL_CONF } = require('../conf/db')
-const { isProd, isTest } = require('../utils/env')
-
-//es6解構
-const { host, user, pasword, database } = MYSQL_CONF
+const { host, user, password, database } = MYSQL_CONF;
 
 const conf = {
-  host: host,   //資料庫主機名稱
-  dialect: 'mysql'     //主機類型
+  host,
+  dialect: 'mysql'  // 何种类型的数据库
 }
 
-//假如是Test環境，關閉log輸出
 if (isTest) {
-  conf.logging = () => { }
+  // 这里 单元测试的时候 不打印mysql 语句, 方便直接定位到错误
+  // 默认的loggin 是 打印数据库mysql 语句的
+  conf.logging = () => {}
 }
 
-//測試使用直接連接模式，如果線上可使用Connection Pool
+// 线上环境，使用连接池
 if (isProd) {
   conf.pool = {
-    max: 5,             //連接池中最大連接數
-    min: 0,             //連接池中最小連接數
-    idle: 10000,     //每個線程最長等待時間
+    max: 5,  //  连接池中最大的连接数量
+    min: 0,
+    idle: 10000,   // 如果一个连接池  10 s 之内，没有被使用，应该被释放 
   }
 }
 
-const seq = new Sequelize(database, user, pasword, conf)
+const seq = new Sequelize(database, user, password,conf) 
 
+module.exports = seq;
 
-
-module.exports = seq

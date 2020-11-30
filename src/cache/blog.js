@@ -10,24 +10,24 @@ const { getBlogListByUser } = require('../services/blog')
 const KEY_PREFIX = 'weibo:square:'
 
 /**
- * 获取广场列表的缓存
+ * 獲取廣場列表暫存
  * @param {number} pageIndex pageIndex
  * @param {number} pageSize pageSize
  */
 async function getSquareCacheList(pageIndex, pageSize) {
   const key = `${KEY_PREFIX}${pageIndex}_${pageSize}`
 
-  // 尝试获取缓存
+  // 嘗試獲取暫存
   const cacheResult = await get(key)
   if (cacheResult != null) {
-    // 获取缓存成功
+    // 獲取暫存成功
     return cacheResult
   }
 
-  // 没有缓存，则读取数据库
+  // 没有暫存，則讀取資料庫
   const result = await getBlogListByUser({ pageIndex, pageSize })
 
-  // 设置缓存，过期时间 1min
+  // 設定暫存，過期時間1min
   set(key, result, 60)
 
   return result

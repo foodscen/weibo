@@ -23,9 +23,14 @@ const { isProd } = require('./utils/env')
 const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 
 //路由
-
-const index = require('./routes/index')
-const users = require('./routes/users')
+const atAPIRouter = require('./routes/api/blog-at')
+const squareAPIRouter = require('./routes/api/blog-square')
+const profileAPIRouter = require('./routes/api/blog-profile')
+const homeAPIRouter = require('./routes/api/blog-home')
+const blogViewRouter = require('./routes/view/blog')
+const utilsAPIRouter = require('./routes/api/utils')
+const userViewRouter = require('./routes/view/user')
+const userAPIRouter = require('./routes/api/user')
 const errorViewRouter = require('./routes/view/error')
 
 // error handler **頁面上顯示，引用require('koa-onerror')
@@ -44,7 +49,11 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
+app.use(koaStatic(path.join(__dirname, '..', 'uploadFiles')))
 
+app.use(views(__dirname + '/views', {
+  extension: 'ejs'
+}))
 /*  註冊服務器端模板引擎*/
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
@@ -68,8 +77,14 @@ app.use(session({
 
 
 // routes
-app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(atAPIRouter.routes(), atAPIRouter.allowedMethods())
+app.use(squareAPIRouter.routes(), squareAPIRouter.allowedMethods())
+app.use(profileAPIRouter.routes(), profileAPIRouter.allowedMethods())
+app.use(homeAPIRouter.routes(), homeAPIRouter.allowedMethods())
+app.use(blogViewRouter.routes(), blogViewRouter.allowedMethods())
+app.use(utilsAPIRouter.routes(), utilsAPIRouter.allowedMethods())
+app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
+app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods()) // 404 路由註冊到最後
 
 

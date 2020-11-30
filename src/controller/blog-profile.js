@@ -13,23 +13,23 @@ const { SuccessModel } = require('../model/ResModel')
  * @param {number} pageIndex 当前页面
  */
 async function getProfileBlogList(userName, pageIndex = 0) {
-    const result = await getBlogListByUser({
-        userName,
-        pageIndex,
-        pageSize: PAGE_SIZE
-    })
-    const blogList = result.blogList
+  const result = await getBlogListByUser({
+    userName,
+    pageIndex,
+    pageSize: PAGE_SIZE
+  })
+  const blogList = result.blogList
 
-    // 拼接返回数据
-    return new SuccessModel({
-        isEmpty: blogList.length === 0,
-        blogList,
-        pageSize: PAGE_SIZE,
-        pageIndex,
-        count: result.count
-    })
+  // 拼接返回数据
+  return new SuccessModel({
+    isEmpty: blogList.length === 0,
+    blogList,
+    pageSize: PAGE_SIZE,
+    pageIndex,
+    count: result.count
+  })
 }
 
 module.exports = {
-    getProfileBlogList
+  getProfileBlogList
 }

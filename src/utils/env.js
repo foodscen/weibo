@@ -1,15 +1,15 @@
 /**
- * @description 環境變數
- * @author 何振宏
+ * @description 环境变量
+ * @author blue
  */
 
 const ENV = process.env.NODE_ENV
 
 module.exports = {
-  isDev: ENV === 'dev',
-  notDev: ENV !== 'dev',
-  isProd: ENV === 'production',
-  notProd: ENV !== 'production',
-  isTest: ENV === 'test',
-  notTest: ENV !== 'test'
+    isDev: ENV === 'dev',
+    notDev: ENV !== 'dev',
+    isProd: ENV === 'production',
+    notProd: ENV !== 'production',
+    isTest: ENV === 'test',
+    notTest: ENV !== 'test'
 }
