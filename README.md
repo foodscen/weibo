@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /koa2-weibo/README.md
  -->
-# 实现一个简易新浪微博
+# 實現一個建議微博
 
 先看下圖效果：
 
