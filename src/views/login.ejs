@@ -1,12 +1,12 @@
-<%- include('layout/header', { title: '微博' - 登入', isNarrow: true })%>
+<%- include('layout/header', { title: '微博 - 登入', isNarrow: true })%>
 
 <h1>登入</h1>
 <% if (locals.isLogin) { %>
-<p><%= locals.userName%> 您已成功登入，請直接連接<a href="/">首页</a></p>
+<p><%= locals.userName%> 您已成功登入，请直接連接<a href="/">首頁</a></p>
 <% } else { %>
 <form>
   <div class="form-group">
-    <input type="text" class="form-control" id="input-username" placeholder="請輸入帳號">
+    <input type="text" class="form-control" id="input-username" placeholder="請輸入用戶名">
   </div>
   <div class="form-group">
     <input type="password" class="form-control" id="input-password" placeholder="請輸入密碼">
@@ -21,12 +21,12 @@
     var $inputUserName = $('#input-username')
     var $inputPassword = $('#input-password')
     $('#btn-submit').click(function (e) {
-      // 防止預設提交表單行為
+      // 阻止默认的提交表单行为
       e.preventDefault()
       const userName = $inputUserName.val()
       const password = $inputPassword.val()
 
-      // 提交資料
+      // 提交数据
       ajax.post('/api/user/login', {
         userName,
         password
@@ -35,7 +35,7 @@
           alert(err)
           return
         }
-        // 趟轉到指定 url 或首頁
+        // 跳转到指定 url 或首页
         var redirectUrl = $.query.get('url') || '/'
         location.href = redirectUrl
       })
