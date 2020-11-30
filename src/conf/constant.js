@@ -1,10 +1,6 @@
 /*
- * @Author: your name
- * @Date: 2020-04-07 22:27:41
- * @LastEditTime: 2020-04-11 21:24:22
- * @LastEditors: Please set LastEditors
+ * @Author: 何振宏
  * @Description: In User Settings Edit
- * @FilePath: /koa2-weibo/src/conf/constant.js
  */
 
 // 常數

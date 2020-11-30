@@ -1,6 +1,6 @@
 /**
- * @description 首页 controller
- * @author blue
+ * @description 首頁 controller
+ * @author 何振宏
  */
 
 const xss = require('xss')
@@ -12,39 +12,39 @@ const { getUserInfo } = require('../services/user')
 const { createAtRelation } = require('../services/at-relation')
 
 /**
- * 创建微博
- * @param {Object} param0 创建微博所需的数据 { userId, content, image }
+ * 創建微博
+ * @param {Object} param0 創建微博所需資料 { userId, content, image }
  */
 async function create({ userId, content, image }) {
-  // 分析并收集 content 中的 @ 用户
-  // content 格式如 '哈喽 @李四 - lisi 你好 @王五 - wangwu '
+  // 分析並收集 content 中的 @ 用戶
+  // content 格式如 '哈囉 @李四 - lisi 你好 @王五 - wangwu '
   const atUserNameList = []
   content = content.replace(
     REG_FOR_AT_WHO,
     (matchStr, nickName, userName) => {
-      // 目的不是 replace 而是获取 userName
+      // 目的不是 replace 而是獲取 userName
       atUserNameList.push(userName)
-      return matchStr // 替换不生效，预期
+      return matchStr // 替換不生效，預期
     }
   )
 
-  // 根据 @ 用户名查询用户信息
+  // 根據 @ 用帳號查詢用户訊息
   const atUserList = await Promise.all(
     atUserNameList.map(userName => getUserInfo(userName))
   )
 
-  // 根据用户信息，获取用户 id
+  // 根據用户訊息，獲取用户 id
   const atUserIdList = atUserList.map(user => user.id)
 
   try {
-    // 创建微博
+    // 創建微博
     const blog = await createBlog({
       userId,
       content: xss(content),
       image
     })
 
-    // 创建 @ 关系
+    // 創建 @ 關係
     await Promise.all(atUserIdList.map(
       userId => createAtRelation(blog.id, userId)
     ))
@@ -58,7 +58,7 @@ async function create({ userId, content, image }) {
 }
 
 /**
- * 获取首页微博列表
+ * 獲取首頁微博列表
  * @param {number} userId userId
  * @param {number} pageIndex page index
  */
