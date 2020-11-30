@@ -8,77 +8,77 @@
  -->
 # 实现一个简易新浪微博
 
-先看下效果图：
+先看下圖效果：
 
-登陆页面：
+登入頁面：
 
 ![image-20200417230654767](./img/login.png)
 
-注册页面：
+註冊頁面：
 
 ![image-20200417230711059](./img/register.png)
 
-首页：
+首頁：
 
 ![image-20200417231105950](./img/home.png)
 
-广场：
+廣場：
 
 ![image-20200417231209888](./img/square.png)
 
-我的空间：
+我的空間：
 
 ![image-20200417231237274](./img/profile.png)
 
-设置：
+設定：
 
 ![image-20200417231250818](./img/setting.png)
 
-### 技术选型：koa2+mysql+session+ejs+redis+jest
+### 技術選型：koa2+mysql+session+ejs+redis+jest
 
 
-### 创建数据库:
+### 建置資料庫:
 
-1. 创建数据库koa2_weibo_db
+1. 建立資料庫koa2_weibo_db(node db/sync.js)
 2. users表
 
-| Column   | Type        | 主键 | 是否不为空 | 自动增加 | Default | 注释   |
+| Column   | Type        | 主鍵 | 是否不為空| 自動增加 | Default | 備註   |
 | -------- | ----------- | ---- | ---------- | -------- | ------- | ------ |
-| id       | int         | Y    | Y          | Y        |         | 主键id |
-| username | varchar(20) |      | Y          |          |         | 用户名 |
-| password | varchar(20) |      | Y          |          |         | 密码   |
-| nickname | varchar(10) |      | Y          |          |         | 昵称   |
+| id       | int         | Y    | Y          | Y        |         | 主鍵id |
+| username | varchar(20) |      | Y          |          |         | 用戶名 |
+| password | varchar(20) |      | Y          |          |         | 密碼  |
+| nickname | varchar(10) |      | Y          |          |         | 暱稱   |
 
 3.blogs表
 
-| column  |    Type     | 主键 | 是否不为空 | 自动增加 | Default | 注释   |
+| column  |    Type     | 主鍵 | 是否不為空 | 自動增加 | Default | 備註   |
 | :-----: | :---------: | :--: | :--------: | :------: | :-----: | ------ |
-|   id    |     int     |  Y   |     Y      |    Y     |         | 主键id |
-| tiitle  | varchar(50) |      |     Y      |          |         | 标题   |
+|   id    |     int     |  Y   |     Y      |    Y     |         | 主鍵id |
+| tiitle  | varchar(50) |      |     Y      |          |         | 標題  |
 | content |    text     |      |     Y      |          |         | 内容   |
-| userid  |     int     |      |     Y      |          |         | 用户id |
+| userid  |     int     |      |     Y      |          |         | 用戶id |
 
-4.粉丝表
+4.粉絲表
 
-|   column   | Type | 主键 | 是否不为空 | 自动增加 | default | 注释         |
+|   column   | Type | 主鍵 | 是否不為空 | 自動增加 | default | 備註         |
 | :--------: | :--: | :--: | :--------: | :------: | :-----: | ------------ |
-|     id     | int  |  Y   |     Y      |    Y     |         | 主键id       |
-|   userId   | int  |      |     Y      |          |         | 用户id       |
-| followerId | int  |      |     Y      |          |         | 被关注用户id |
+|     id     | int  |  Y   |     Y      |    Y     |         | 主鍵id       |
+|   userId   | int  |      |     Y      |          |         | 用戶id       |
+| followerId | int  |      |     Y      |          |         | 被關注用戶id |
 
-5.@用户表
+5.@用戶表
 
-| columnd | type | 主键 | 是否不为空 | 自动增加 | Default | 注释     |
+| columnd | type | 主鍵 | 是否不為空 | 自動增加 | Default | 備註    |
 | :-----: | ---- | ---- | ---------- | -------- | ------- | -------- |
-|   id    | int  | Y    | Y          | Y        |         | 主键id   |
-| userId  | int  |      | Y          |          |         | 用户id   |
+|   id    | int  | Y    | Y          | Y        |         | 主鍵id   |
+| userId  | int  |      | Y          |          |         | 用戶id   |
 | blogId  | int  |      | Y          |          |         | 博客id   |
-| isRead  | Bool |      | Y          |          |         | 是否阅读 |
+| isRead  | Bool |      | Y          |          |         | 是否閱讀 |
 
-### 安装
+### 安裝
 npm install
 
-### 开启
+### 執行
 + redis-server
 + npm run dev
 
