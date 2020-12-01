@@ -15,17 +15,17 @@ const User = seq.define('user', {
     type: STRING,
     allowNull: false,
     unique: true,
-    comment: '用户名，唯一'
+    comment: '用戶名，唯一'
   },
   password: {
     type: STRING,
     allowNull: false,
-    comment: '密码'
+    comment: '密碼'
   },
   nickName: {
     type: STRING,
     allowNull: false,
-    comment: '昵称'
+    comment: '暱稱'
   },
   gender: {
     type: DECIMAL,
@@ -35,7 +35,7 @@ const User = seq.define('user', {
   },
   picture: {
     type: STRING,
-    comment: '头像，图片地址'
+    comment: '頭像，圖片地址'
   },
   city: {
     type: STRING,

@@ -13,7 +13,7 @@ const AtRelation = seq.define('atRelation', {
   userId: {
     type: INTEGER,
     allowNull: false,
-    comment: '用户 Id'
+    comment: '用戶 Id'
   },
   blogId: {
     type: INTEGER,
@@ -24,7 +24,7 @@ const AtRelation = seq.define('atRelation', {
     type: BOOLEAN,
     allowNull: false,
     defaultValue: false, // 默认未读
-    comment: '是否已读'
+    comment: '是否已讀'
   }
 })
 

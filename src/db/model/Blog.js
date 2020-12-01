@@ -13,7 +13,7 @@ const Blog = seq.define('blog', {
   userId: {
     type: INTEGER,
     allowNull: false,
-    comment: '用户 ID'
+    comment: '用戶 ID'
   },
   content: {
     type: TEXT,
@@ -22,7 +22,7 @@ const Blog = seq.define('blog', {
   },
   image: {
     type: STRING,
-    comment: '图片地址'
+    comment: '圖片地址'
   }
 })
 
