@@ -1,9 +1,9 @@
 /*
- * @Author: your name
+ * @Author: 何振宏
  * @Date: 2020-04-04 18:13:19
- * @LastEditTime: 2020-04-11 21:42:48
+ * @LastEditTime: 2020-12-01 21:42:48
  * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @Description: 資料模型入口文件
  * @FilePath: /koa2-weibo/src/db/model/index.js
  */
 const User = require('./User')

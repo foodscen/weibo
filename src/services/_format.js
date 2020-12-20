@@ -1,14 +1,14 @@
 /**
- * @description 数据格式化
- * @author blue
+ * @description 數據格式化
+ * @author 何振宏
  */
 
 const { DEFAULT_PICTURE, REG_FOR_AT_WHO } = require('../conf/constant')
 const { timeFormat } = require('../utils/dt')
 
 /**
- * 用户默认头像
- * @param {Object} obj 用户对象
+ * 用戶預設頭像
+ * @param {Object} obj 用戶物件
  */
 function _formatUserPicture(obj) {
   if (obj.picture == null) {

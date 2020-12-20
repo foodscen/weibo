@@ -2,7 +2,7 @@
 
 <div class="container margin-top-20">
   <div class="row">
-    <!-- 左侧 -->
+    <!-- 左側  -->
     <div class="col-8">
       <h5 class="margin-bottom-10">基本訊息</h5>
       <form>
@@ -55,17 +55,17 @@
       <hr />
       <center><button class="btn btn-danger" id="btn-logout">登出</button></center>
 
-    </div> <!-- 左侧结束 -->
+    </div> <!-- 左側结束 -->
 
-    <!-- 右侧 -->
+    <!-- 右側 -->
     <div class="col-4">
-    </div> <!-- 右侧结束 -->
+    </div> <!-- 右側结束 -->
   </div>
 </div>
 
 <script>
   $(function () {
-    // 上传图片
+    //上傳圖片
     var $imgPicture = $('#img-picture')
     var $filePicture = $('#file-picture')
     $filePicture.change(function (e) {
@@ -80,7 +80,7 @@
       })
     })
 
-    // 修改基本信息
+    // 修改基本訊息
     var $inputNick = $('#input-nick')
     var $inputCity = $('#input-city')
     $('#btn-submit-info').click(function (e) {
@@ -102,7 +102,7 @@
       })
     })
 
-    // 修改密码
+    // 修改密碼
     var $inputCurPassword = $('#input-cur-password')
     var $inputNewPassword = $('#input-new-password')
     var $inputNewPasswordRepeat = $('#input-new-password-repeat')
@@ -136,9 +136,9 @@
       })
     })
 
-    // 退出登录
+    // 登出
     $('#btn-logout').click(function () {
-      if (confirm('是否確定退出登入？') === false) {
+      if (confirm('確定登出？') === false) {
         return
       }
       ajax.post('/api/user/logout', function (err, data) {
@@ -146,7 +146,7 @@
           console.error(err)
           return
         }
-        alert('已成功退出')
+        alert('已成功登出')
         location.href = '/login'
       })
     })

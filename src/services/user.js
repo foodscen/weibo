@@ -8,12 +8,12 @@ const { formatUser } = require('./_format')
 const { addFollower } = require('./user-relation')
 
 /**
- * 获取用户信息
- * @param {string} userName 用户名
- * @param {string} password 密码
+ * 獲取用戶訊息
+ * @param {string} userName 用戶名
+ * @param {string} password 密碼
  */
 async function getUserInfo(userName, password) {
-  // 查询条件
+  // 查詢條件
   const whereOpt = {
     userName
   }
@@ -21,7 +21,7 @@ async function getUserInfo(userName, password) {
     Object.assign(whereOpt, { password })
   }
 
-  // 查询
+  // 查詢
   const result = await User.findOne({
     attributes: ['id', 'userName', 'nickName', 'picture', 'city'],
     where: whereOpt
@@ -38,11 +38,11 @@ async function getUserInfo(userName, password) {
 }
 
 /**
- * 创建用户
- * @param {string} userName 用户名
- * @param {string} password 密码
- * @param {number} gender 性别
- * @param {string} nickName 昵称
+ * 創建用戶
+ * @param {string} userName 用戶名
+ * @param {string} password 密碼
+ * @param {number} gender 性別
+ * @param {string} nickName 暱稱
  */
 async function createUser({ userName, password, gender = 3, nickName }) {
   const result = await User.create({
@@ -53,15 +53,15 @@ async function createUser({ userName, password, gender = 3, nickName }) {
   })
   const data = result.dataValues
 
-  // 自己关注自己（为了方便首页获取数据）
+  // 自己關注自己（為了方便首頁獲取數據）
   addFollower(data.id, data.id)
 
   return data
 }
 
 /**
- * 删除用户
- * @param {string} userName 用户名
+ * 刪除用戶
+ * @param {string} userName 用戶名
  */
 async function deleteUser(userName) {
   const result = await User.destroy({
@@ -69,7 +69,7 @@ async function deleteUser(userName) {
       userName
     }
   })
-  // result 删除的行数
+  // result 刪除的行數
   return result > 0
 }
 
